@@ -1,0 +1,34 @@
+language: node_js
+node_js:
+- v8
+- v10
+services:
+- mongodb
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.8
+    - g++-4.8
+script:
+- ssh -i travis caffeinum@testnet.exchange -L 8080:192.168.18.45:8080 -N -f
+- npm test -- -i --coverage
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: ssh -i travis caffeinum@testnet.exchange "cd /home/caffeinum/testXback && git reset --hard && git pull"
+  on:
+    branch: master
+env:
+  global:
+  - CXX=g++-4.8
+  - MASTER_KEY=masterKey
+  - JWT_SECRET=jwtSecret
+before_install:
+- openssl aes-256-cbc -K $encrypted_1dbd2aab2682_key -iv $encrypted_1dbd2aab2682_iv
+  -in travis.enc -out travis -d
+- eval "$(ssh-agent -s)"
+- chmod 600 ./travis
+- echo -e "Host testnet.exchange\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- ssh-add ./travis
