@@ -71,7 +71,7 @@ export default [
     name: 'asset.summary',
     role: 'public',
     tokens: []
-  },
+  },  
   {
     name: 'order.depth',
     role: 'public',
@@ -80,6 +80,11 @@ export default [
       limit: check.Number,
       interval: check.Optional('0')
     }
+  },
+  {
+    name: 'market.list',
+    role: 'public',
+    tokens:[]
   },
   {
     name: 'market.last',
