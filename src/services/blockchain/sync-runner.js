@@ -6,7 +6,7 @@ let listening = []
 export const stop = () => clearInterval(update)
 export const listen = (xid, currency) => {
   const isListening = listening.filter(sub => sub.xid === xid && sub.currency === currency)
-
+  console.log(`custom cons ${xid} ${currency}`)
   if (isListening.length) {
     return
   }

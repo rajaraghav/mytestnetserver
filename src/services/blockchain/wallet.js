@@ -49,7 +49,7 @@ export const withdraw = (currency, xid, amount) => {
 }
 
 export const getBalanceHistory = async (currency, xid) => {
-  const asset = currency === 'BTC' ? 'TESTNET3' : 'RINKEBY'
+  const asset = currency === 'BTC' ? 'BTC' : 'ETH'
 
   const filter = {
     asset,
@@ -169,7 +169,7 @@ export const hashToId = (hash, currency, vout = 0) => {
 
 export const save = (currency, xid) => async (_tx) => {
   console.log('tx', _tx)
-  const asset = currency === 'BTC' ? 'TESTNET3' : 'RINKEBY'
+  const asset = currency === 'BTC' ? 'BTC' : 'ETH'
   const amount = _tx.amount
 
   const _id = hashToId(_tx.hash, currency, _tx.vout)
