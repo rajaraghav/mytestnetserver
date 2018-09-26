@@ -95,7 +95,7 @@ export default [
     name: "asset.summary",
     role: "public",
     tokens: []
-  },  
+  },
   {
     name: "order.depth",
     role: "public",
@@ -106,14 +106,9 @@ export default [
     }
   },
   {
-    name: 'market.list',
-    role: 'public',
-    tokens:[]
-  },
-  {
-    name: 'market.last',
-    role: 'public',
-    tokens: ['market']
+    name: "market.last",
+    role: "public",
+    tokens: ["market"]
   },
   {
     name: "market.list",
